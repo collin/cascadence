@@ -116,6 +116,17 @@ describe Cascadence do
       @test.run_until(:step2).foo.should eq 6
     end
 
+    it "should run to a specified number" do
+      @test.run_until(1).foo.should eq 6
+    end
+
+    it "should run to a specified foreign class" do
+      checker = lambda do |state|
+        state.current_step_name == :step3
+      end
+      @test.run_until(checker).foo.should eq 1
+    end
+
     it "should have the same result when calling successively" do
       @test.run_until.run_until.run_until.foo.should eq 1
     end

@@ -14,18 +14,18 @@
       <img src="./assets/0.7.1/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2013-01-15T12:03:18-08:00">2013-01-15T12:03:18-08:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2013-01-15T12:07:20-08:00">2013-01-15T12:07:20-08:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">93.75%</span></span>
+    (<span class="covered_percent"><span class="green">100.0%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         7.35
+         8.65
        </span>
     </span> hits/line)
   </h2>
@@ -33,8 +33,8 @@
   <div>
     <b>2</b> files in total.
     <b>48</b> relevant lines. 
-    <span class="green"><b>45</b> lines covered</span> and
-    <span class="red"><b>3</b> lines missed </span>
+    <span class="green"><b>48</b> lines covered</span> and
+    <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -62,12 +62,12 @@
       
       <tr>
         <td class="strong"><a href="#80c6665a79d2f1b08d818eeb93e0f0925314637e" class="src_link" title="lib/cascadence/stateful.rb">lib/cascadence/stateful.rb</a></td>
-        <td class="green strong">93.02 %</td>
+        <td class="green strong">100.0 %</td>
         <td>80</td>
         <td>43</td>
-        <td>40</td>
-        <td>3</td>
-        <td>13.7</td>
+        <td>43</td>
+        <td>0</td>
+        <td>16.3</td>
       </tr>
       
     </tbody>
@@ -197,11 +197,11 @@
         <div class="source_table" id="80c6665a79d2f1b08d818eeb93e0f0925314637e">
   <div class="header">
     <h3>lib/cascadence/stateful.rb</h3>
-    <h4><span class="green">93.02 %</span> covered</h4>
+    <h4><span class="green">100.0 %</span> covered</h4>
     <div>
       <b>43</b> relevant lines. 
-      <span class="green"><b>40</b> lines covered</span> and
-      <span class="red"><b>3</b> lines missed.</span>
+      <span class="green"><b>43</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
   
@@ -316,8 +316,8 @@
           <code class="ruby">      </code>
         </li>
       
-        <li class="covered" data-hits="14" data-linenumber="19">
-          <span class="hits">14</span>
+        <li class="covered" data-hits="18" data-linenumber="19">
+          <span class="hits">18</span>
           
           <code class="ruby">      return run_next if target.nil? and !block_given?</code>
         </li>
@@ -328,20 +328,20 @@
           <code class="ruby">      </code>
         </li>
       
-        <li class="covered" data-hits="11" data-linenumber="21">
-          <span class="hits">11</span>
+        <li class="covered" data-hits="15" data-linenumber="21">
+          <span class="hits">15</span>
           
           <code class="ruby">      if block_given?</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="22">
-          <span class="hits">6</span>
+        <li class="covered" data-hits="8" data-linenumber="22">
+          <span class="hits">8</span>
           
           <code class="ruby">        while !_cascadence_end? and !yield(self)</code>
         </li>
       
-        <li class="covered" data-hits="17" data-linenumber="23">
-          <span class="hits">17</span>
+        <li class="covered" data-hits="22" data-linenumber="23">
+          <span class="hits">22</span>
           
           <code class="ruby">          run_next</code>
         </li>
@@ -352,8 +352,8 @@
           <code class="ruby">        end</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="25">
-          <span class="hits">6</span>
+        <li class="covered" data-hits="8" data-linenumber="25">
+          <span class="hits">8</span>
           
           <code class="ruby">        return self</code>
         </li>
@@ -370,8 +370,8 @@
           <code class="ruby">      </code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="28">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="7" data-linenumber="28">
+          <span class="hits">7</span>
           
           <code class="ruby">      case target.class.to_s</code>
         </li>
@@ -394,8 +394,8 @@
           <code class="ruby">      when &quot;Fixnum&quot;, &quot;Integer&quot;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="32">
-          
+        <li class="covered" data-hits="4" data-linenumber="32">
+          <span class="hits">4</span>
           
           <code class="ruby">        return run_until { |state| state.cascadence_position == target }</code>
         </li>
@@ -406,14 +406,14 @@
           <code class="ruby">      else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="34">
-          
+        <li class="covered" data-hits="1" data-linenumber="34">
+          <span class="hits">1</span>
           
           <code class="ruby">        throw &quot;Bad input error.&quot; unless target.respond_to? :call</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="35">
-          
+        <li class="covered" data-hits="4" data-linenumber="35">
+          <span class="hits">4</span>
           
           <code class="ruby">        return run_until { |state| target.call state }</code>
         </li>
@@ -442,26 +442,26 @@
           <code class="ruby">    def run_next</code>
         </li>
       
-        <li class="covered" data-hits="33" data-linenumber="40">
-          <span class="hits">33</span>
+        <li class="covered" data-hits="38" data-linenumber="40">
+          <span class="hits">38</span>
           
           <code class="ruby">      _debug_helper</code>
         </li>
       
-        <li class="covered" data-hits="33" data-linenumber="41">
-          <span class="hits">33</span>
+        <li class="covered" data-hits="38" data-linenumber="41">
+          <span class="hits">38</span>
           
           <code class="ruby">      unless next_step_name.nil?</code>
         </li>
       
-        <li class="covered" data-hits="29" data-linenumber="42">
-          <span class="hits">29</span>
+        <li class="covered" data-hits="34" data-linenumber="42">
+          <span class="hits">34</span>
           
           <code class="ruby">        send next_step_name</code>
         </li>
       
-        <li class="covered" data-hits="29" data-linenumber="43">
-          <span class="hits">29</span>
+        <li class="covered" data-hits="34" data-linenumber="43">
+          <span class="hits">34</span>
           
           <code class="ruby">        _increment_cascadence</code>
         </li>
@@ -472,8 +472,8 @@
           <code class="ruby">      end</code>
         </li>
       
-        <li class="covered" data-hits="33" data-linenumber="45">
-          <span class="hits">33</span>
+        <li class="covered" data-hits="38" data-linenumber="45">
+          <span class="hits">38</span>
           
           <code class="ruby">      self</code>
         </li>
@@ -496,14 +496,14 @@
           <code class="ruby">    def current_step_name</code>
         </li>
       
-        <li class="covered" data-hits="20" data-linenumber="49">
-          <span class="hits">20</span>
+        <li class="covered" data-hits="23" data-linenumber="49">
+          <span class="hits">23</span>
           
           <code class="ruby">      return nil if cascadence_position.nil?</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="50">
-          <span class="hits">13</span>
+        <li class="covered" data-hits="15" data-linenumber="50">
+          <span class="hits">15</span>
           
           <code class="ruby">      self.class.cascadence_order[cascadence_position]</code>
         </li>
@@ -526,14 +526,14 @@
           <code class="ruby">    def next_step_name</code>
         </li>
       
-        <li class="covered" data-hits="63" data-linenumber="54">
-          <span class="hits">63</span>
+        <li class="covered" data-hits="73" data-linenumber="54">
+          <span class="hits">73</span>
           
           <code class="ruby">      return self.class.cascadence_order.first if cascadence_position.nil?</code>
         </li>
       
-        <li class="covered" data-hits="40" data-linenumber="55">
-          <span class="hits">40</span>
+        <li class="covered" data-hits="46" data-linenumber="55">
+          <span class="hits">46</span>
           
           <code class="ruby">      self.class.cascadence_order[cascadence_position+1]</code>
         </li>
@@ -568,14 +568,14 @@
           <code class="ruby">    def _cascadence_end?</code>
         </li>
       
-        <li class="covered" data-hits="23" data-linenumber="61">
-          <span class="hits">23</span>
+        <li class="covered" data-hits="30" data-linenumber="61">
+          <span class="hits">30</span>
           
           <code class="ruby">      return false if cascadence_position.nil?</code>
         </li>
       
-        <li class="covered" data-hits="17" data-linenumber="62">
-          <span class="hits">17</span>
+        <li class="covered" data-hits="22" data-linenumber="62">
+          <span class="hits">22</span>
           
           <code class="ruby">      cascadence_position &gt;= self.class.cascadence_order.count - 1</code>
         </li>
@@ -598,14 +598,14 @@
           <code class="ruby">    def _increment_cascadence</code>
         </li>
       
-        <li class="covered" data-hits="29" data-linenumber="66">
-          <span class="hits">29</span>
+        <li class="covered" data-hits="34" data-linenumber="66">
+          <span class="hits">34</span>
           
           <code class="ruby">      if @cascadence_position.nil?</code>
         </li>
       
-        <li class="covered" data-hits="11" data-linenumber="67">
-          <span class="hits">11</span>
+        <li class="covered" data-hits="13" data-linenumber="67">
+          <span class="hits">13</span>
           
           <code class="ruby">        @cascadence_position = 0</code>
         </li>
@@ -616,8 +616,8 @@
           <code class="ruby">      else</code>
         </li>
       
-        <li class="covered" data-hits="18" data-linenumber="69">
-          <span class="hits">18</span>
+        <li class="covered" data-hits="21" data-linenumber="69">
+          <span class="hits">21</span>
           
           <code class="ruby">        @cascadence_position += 1</code>
         </li>
@@ -646,20 +646,20 @@
           <code class="ruby">    def _debug_helper</code>
         </li>
       
-        <li class="covered" data-hits="33" data-linenumber="74">
-          <span class="hits">33</span>
+        <li class="covered" data-hits="38" data-linenumber="74">
+          <span class="hits">38</span>
           
           <code class="ruby">      @debug_counter ||= 0</code>
         </li>
       
-        <li class="covered" data-hits="33" data-linenumber="75">
-          <span class="hits">33</span>
+        <li class="covered" data-hits="38" data-linenumber="75">
+          <span class="hits">38</span>
           
           <code class="ruby">      @debug_counter += 1</code>
         </li>
       
-        <li class="covered" data-hits="33" data-linenumber="76">
-          <span class="hits">33</span>
+        <li class="covered" data-hits="38" data-linenumber="76">
+          <span class="hits">38</span>
           
           <code class="ruby">      throw &quot;Recursion Limit Reached! cascadence_position: #{cascadence_position} --&gt; #{next_step_name}&quot; if 100 &lt; @debug_counter</code>
         </li>
