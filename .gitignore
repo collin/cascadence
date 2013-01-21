@@ -1,2 +1,8 @@
 # Ignore tmp files
 /tmp
+
+# Ignore jeweler files
+/pkg/
+
+# Ignore coverage
+/coverage/
