@@ -2,6 +2,10 @@
 
 Helper for organizing flow-based specs for such things as writing integration tests with rspec-capybara
 
+Notes
+=
+You (I guess that would be me) need to fix how cascadence order is read, right now, the dependence on
+recursion is extremely resource heavy and definitely a bad idea (if not a target for memory leaks)
 == Contributing to cascadence
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
