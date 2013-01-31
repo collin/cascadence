@@ -97,8 +97,10 @@ describe Cascadence::Helper do
     api.replace_in_part([], [1,2,3,4], 42).should eq [1,2,3,4]
   end
 
-  it "should return the original if the given chunk is empty; it should ignore other inputs" do
-    api.replace_in_part([1,2,3,4], [], 12).should eq [1,2,3,4]
+  it "should return a cropped version of the array if the replacement chunk is empty" do
+    api.replace_in_part([1,2,3,4], [], 2).should eq [1,2]
+    api.replace_in_part([0,1,2,3,4,5,6,7],[], 2, 4).should eq [0,1,5,6,7]
   end
+  
 
 end

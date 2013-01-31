@@ -10,7 +10,6 @@ module Cascadence
     end
 
     def self.replace_in_part(original, chunk, start, finish=nil)
-      return original if chunk.nil? || chunk.empty?
       return chunk if original.nil? || original.empty?
       throw :OutOfRange if start >= original.count
       result = original.clone
