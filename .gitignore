@@ -6,3 +6,4 @@
 
 # Ignore coverage
 /coverage/
+coverage/*
