@@ -3,6 +3,7 @@
 
 # Ignore jeweler files
 /pkg/
+pkg
 
 # Ignore coverage
 /coverage/
