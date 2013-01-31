@@ -38,6 +38,7 @@ module Cascadence
 
     def run_next
       _debug_helper
+
       unless next_step_name.nil?
         send next_step_name
         _increment_cascadence

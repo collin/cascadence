@@ -1,11 +1,13 @@
 require "spec_helper"
 
-Dir[File.join(File.dirname(__FILE__), "cascadence", "*_spec.rb")].each do |source|
-  require source
-end
-
 describe Cascadence do
   it "should pass the presence sanity test" do
     Cascadence.class.should eq Module
+  end
+
+  [:Flow, :ClassMethods, :Stateful, :Helper].each do |constant|
+    it "should contain the correct #{constant} constant" do
+      Cascadence.const_get(constant).should_not be_nil
+    end
   end
 end
