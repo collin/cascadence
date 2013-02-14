@@ -18,7 +18,7 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://github.com/foxnewsnetwork/cascadence"
   gem.license = "MIT"
   gem.summary = %Q{Organization helper for writing flow-based integration tests using capybara and whatnot}
-  gem.description = %Q{This doesn't even show up so what's the point of writing it?}
+  gem.description = %Q{Organizational helper for writing serializations for use with threading. The biggest use case of this would be in selenium / capybara based integration testing as this allows you to run flows in parallel.}
   gem.email = "foxnewsnetwork@gmail.com"
   gem.authors = ["Thomas Chen"]
   # dependencies defined in Gemfile
