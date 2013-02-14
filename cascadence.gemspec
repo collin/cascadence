@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "cascadence"
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Thomas Chen"]
-  s.date = "2013-01-31"
+  s.date = "2013-02-14"
   s.description = "This doesn't even show up so what's the point of writing it?"
   s.email = "foxnewsnetwork@gmail.com"
   s.extra_rdoc_files = [
@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
     "README.markdown",
     "Rakefile",
     "VERSION",
+    "cascadence.gemspec",
     "coverage/.last_run.json",
     "coverage/.resultset.json",
     "coverage/assets/0.7.1/application.css",
