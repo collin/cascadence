@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = "cascadence"
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Thomas Chen"]
   s.date = "2013-02-14"
-  s.description = "This doesn't even show up so what's the point of writing it?"
+  s.description = "Organizational helper for writing serializations for use with threading. The biggest use case of this would be in selenium / capybara based integration testing as this allows you to run flows in parallel."
   s.email = "foxnewsnetwork@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
