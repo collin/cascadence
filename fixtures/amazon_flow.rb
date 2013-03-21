@@ -1,1 +1,2 @@
-module AmazonFlow; end
+module Amazon
+end
