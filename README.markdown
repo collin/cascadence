@@ -7,6 +7,14 @@ Example Usage
 =
 Suppose you have the files:
 
+```
+  flows
+  |- spam
+  |   |- spam_flow.rb
+  |   |- hard_spam_flow.rb
+  |- spam.rb
+  |- flow_helper.rb
+```
 1. flows
   1. spam
     1. spam_flow.rb
