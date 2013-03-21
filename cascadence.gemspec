@@ -5,13 +5,14 @@
 
 Gem::Specification.new do |s|
   s.name = "cascadence"
-  s.version = "0.1.2"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Thomas Chen"]
-  s.date = "2013-02-14"
+  s.date = "2013-03-21"
   s.description = "Organizational helper for writing serializations for use with threading. The biggest use case of this would be in selenium / capybara based integration testing as this allows you to run flows in parallel."
   s.email = "foxnewsnetwork@gmail.com"
+  s.executables = ["cascadence"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.markdown"
@@ -24,6 +25,7 @@ Gem::Specification.new do |s|
     "README.markdown",
     "Rakefile",
     "VERSION",
+    "bin/cascadence",
     "cascadence.gemspec",
     "coverage/.last_run.json",
     "coverage/.resultset.json",
@@ -68,15 +70,34 @@ Gem::Specification.new do |s|
     "coverage/assets/0.7.1/smoothness/images/ui-icons_888888_256x240.png",
     "coverage/assets/0.7.1/smoothness/images/ui-icons_cd0a0a_256x240.png",
     "coverage/index.html",
+    "fixtures/README.md",
+    "fixtures/amazon/madeira_flow.rb",
+    "fixtures/amazon/rio_negro_flow.rb",
+    "fixtures/amazon_flow.rb",
+    "fixtures/dogwood.clj",
+    "fixtures/faggot_spec.rb",
+    "fixtures/flow_helper.rb",
+    "fixtures/lib/nothing.rb",
+    "fixtures/nile/blue_nile_flow.rb",
+    "fixtures/nile/white_nile/gray_nile_flow.rb",
+    "fixtures/nile/white_nile_flow.rb",
+    "fixtures/nile_flow.rb",
     "lib/cascadence.rb",
     "lib/cascadence/class_methods.rb",
+    "lib/cascadence/commander.rb",
+    "lib/cascadence/config.rb",
     "lib/cascadence/flow.rb",
     "lib/cascadence/helper.rb",
+    "lib/cascadence/runner.rb",
     "lib/cascadence/stateful.rb",
+    "lib/cascadence/task.rb",
+    "spec/cascadence/advanced_fork_merge_spec.rb",
     "spec/cascadence/class_methods_spec.rb",
+    "spec/cascadence/commander_spec.rb",
     "spec/cascadence/flow_spec.rb",
     "spec/cascadence/fork_merge_spec.rb",
     "spec/cascadence/helper_spec.rb",
+    "spec/cascadence/runner_spec.rb",
     "spec/cascadence/stateful_spec.rb",
     "spec/cascadence_spec.rb",
     "spec/spec_helper.rb"
@@ -84,24 +105,30 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/foxnewsnetwork/cascadence"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.24"
+  s.rubygems_version = "2.0.0.rc.2"
   s.summary = "Organization helper for writing flow-based integration tests using capybara and whatnot"
 
   if s.respond_to? :specification_version then
-    s.specification_version = 3
+    s.specification_version = 4
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<thor>, [">= 0"])
+      s.add_runtime_dependency(%q<activesupport>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<rdoc>, [">= 0"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<simplecov>, [">= 0"])
     else
+      s.add_dependency(%q<thor>, [">= 0"])
+      s.add_dependency(%q<activesupport>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<rdoc>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<simplecov>, [">= 0"])
     end
   else
+    s.add_dependency(%q<thor>, [">= 0"])
+    s.add_dependency(%q<activesupport>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<rdoc>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 0"])
