@@ -6,10 +6,11 @@ module Cascadence
       puts "El Psy Congroo"
     end
 
-    desc "flow", "Runs the flow specified in the given file. If given a directory, runs all the flows in the directory."
+    desc "flow [FILEPATH]", "Runs the flow specified in the given file. If given a directory, runs all the flows in the directory."
     def flow(filepath=Dir.pwd)
-      files = _get_files_from_filepath _absolutize_filepath filepath 
-      _setup_environment_from_filepath!(filepath)
+      abs_file_path = _absolutize_filepath filepath
+      files = _get_files_from_filepath abs_file_path
+      _setup_environment_from_filepath!(_absolutize_filepath filepath)
       tasks = files.map { |file| _get_task_from_file file }
       _run_tasks tasks
     end

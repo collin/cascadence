@@ -11,8 +11,12 @@ module Cascadence
   autoload :Runner, File.join( File.dirname(__FILE__), "cascadence", "runner")
   autoload :Config, File.join( File.dirname(__FILE__), "cascadence", "config")
   autoload :Task, File.join( File.dirname(__FILE__), "cascadence", "task")
-  def self.config
-    Config.instance
+  def self.config(&block)
+    if block_given?
+      yield Config.instance
+    else
+      Config.instance
+    end
   end 
 
   def self.runner

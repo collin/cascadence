@@ -7,7 +7,7 @@ describe Cascadence::Commander do
     describe "#flow" do
       let(:result) { lolcat.flow File.join(RSpec::FixturePath, "amazon", "madeira_flow.rb") }
       it "should run the flow stated" do
-        result.should eq ["initialized123"]
+        result.should eq ["zerostate123"]
       end
     end
   end
@@ -126,7 +126,7 @@ describe Cascadence::Commander do
         end
 
         it "should run and give me the correct result" do
-          task.call.state.should eq "initialized123"
+          task.call.state.should eq "zerostate123"
         end
       end
     end
