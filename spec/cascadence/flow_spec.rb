@@ -32,6 +32,21 @@ describe Cascadence::Flow do
     @flow = FlowTest.new
   end
 
+  describe "#subclasses" do
+    context "deep inheritance" do
+      let(:inception) do
+        Class.new Class.new Class.new Class.new FlowTest
+      end
+
+      it "should increase the members in subclasses even though it's not directly inheriting one thing" do
+        expect { inception }.to change(Cascadence::Flow.subclasses, :count).by 4
+      end
+      it "should at least contain the give class" do
+        Cascadence::Flow.subclasses.should include inception
+      end
+    end
+  end
+
   describe "sanity" do
 
     it "should be an instance of flowtest" do
