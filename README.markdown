@@ -68,6 +68,7 @@ Suppose you have the files:
 ```
 
 2. flow_helper.rb
+
 ```ruby
   require 'cascadence'
   require 'spam'
@@ -78,10 +79,10 @@ Suppose you have the files:
     config.max_thread_count = 4
     config.zero_state_generator = lambda { Capybara::Session.new :selenium }
   end
-
 ```
 
 3. spam.rb
+
 ```ruby
   require 'spam/spam_flow.rb'
   require 'spam/hard_spam_flow.rb'
@@ -102,8 +103,9 @@ You (I guess that would be me) need to fix how cascadence order is read, right n
 recursion is extremely resource heavy and definitely a bad idea (if not a target for memory leaks)
 
 Update: version 0.2.1 out and still not fixed. You (that would be me) are a major faggot.
-== Contributing to cascadence
- 
+
+Contributing to cascadence
+==  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
 * Fork the project.
@@ -112,8 +114,8 @@ Update: version 0.2.1 out and still not fixed. You (that would be me) are a majo
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
-== Copyright
-
+Copyright
+== 
 Copyright (c) 2013 Thomas Chen. See LICENSE.txt for
 further details.
 
