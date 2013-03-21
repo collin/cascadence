@@ -53,6 +53,7 @@ module Cascadence
 
     def _get_task_from_file(file)
       flow = _get_flow_from_file file
+      throw "Bad flow from #{file}. Available flows: #{Cascadence::Flow.subclasses.to_s}" if flow.nil?
       Cascadence::Task.new(_get_zero_state_generator_from_flow flow) do |state=nil|
         flow.new(state).run_states
       end
