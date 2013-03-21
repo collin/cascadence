@@ -15,12 +15,6 @@ Suppose you have the files:
   |- spam.rb
   |- flow_helper.rb
 ```
-1. flows
-  1. spam
-    1. spam_flow.rb
-    2. hard_spam_flow.rb
-  2. spam.rb
-  3. flow_helper.rb
 
 1. spam_flow.rb
 
