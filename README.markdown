@@ -7,12 +7,12 @@ Example Usage
 =
 Suppose you have the files:
 
-* flows
-  * spam
-    * spam_flow.rb
-    * hard_spam_flow.rb
-  * spam.rb
-  * flow_helper.rb
+1. flows
+  1. spam
+    1. spam_flow.rb
+    2. hard_spam_flow.rb
+  2. spam.rb
+  3. flow_helper.rb
 
 1. spam_flow.rb
 
@@ -68,7 +68,7 @@ Suppose you have the files:
 ```
 
 2. flow_helper.rb
-``` ruby
+```ruby
   require 'cascadence'
   require 'spam'
   require 'capybara'
@@ -82,9 +82,18 @@ Suppose you have the files:
 ```
 
 3. spam.rb
-``` ruby
+```ruby
   require 'spam/spam_flow.rb'
   require 'spam/hard_spam_flow.rb'
+```
+
+How to run
+=
+
+```sh
+  $ cascadence flows/ # runs all flows
+  $ cascadence flows/spam # runs all flows in the spam folder
+  $ cascadence flows/spam/spam_flow.rb # runs the spam_flow.rb flow
 ```
 
 Notes
