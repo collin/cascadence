@@ -60,7 +60,7 @@ module Cascadence
 
     def _get_zero_state_generator_from_flow(flow)
       return flow.zero_state_generator if flow.respond_to? :zero_state_generator
-      return Cascadence.config.zero_state_generator if flow == Object
+      return Cascadence.config.zero_state_generator if flow == Object || !flow.respond_to?(:parent)
       _get_zero_state_generator_from_flow(flow.parent)
     end
 
