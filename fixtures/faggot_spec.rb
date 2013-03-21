@@ -1,0 +1,1 @@
+describe Faggot do; end

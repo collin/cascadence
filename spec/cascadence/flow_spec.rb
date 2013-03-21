@@ -50,7 +50,18 @@ describe Cascadence::Flow do
 
   end
 
-  describe "run states" do
+  describe "#subclasses" do
+    let(:inherit) { Class.new(Cascadence::Flow) }
+
+    it "should change the count of subclasses by 1" do
+      expect { inherit }.to change(Cascadence::Flow.subclasses, :count).by(1)
+    end
+    it "should include this new mixed in class as a subclass of cascadence flow" do
+      Cascadence::Flow.subclasses.should include inherit
+    end
+  end
+
+  describe "#run_states" do
 
     before(:each) { @expected = "initialized-step1-step2-step3-step4" }
     let(:actual) { @flow.run_states }
