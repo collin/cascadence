@@ -3,75 +3,20 @@ module Cascadence
 
     desc "version", "Not implemented yet. That's right, the command that tells you what version of cascadence you're running has not been implemented yet."
     def version
-      puts "El Psy Congroo"
+      Cascadence::Commander::Version.instance.run
     end
 
     desc "flow [FILEPATH]", "Runs the flow specified in the given file. If given a directory, runs all the flows in the directory."
     def flow(filepath=Dir.pwd)
-      abs_file_path = _absolutize_filepath filepath
-      files = _get_files_from_filepath abs_file_path
-      _setup_environment_from_filepath!(_absolutize_filepath filepath)
-      tasks = files.map { |file| _get_task_from_file file }
-      _run_tasks tasks
+      Cascadence::Commander::Flow.instance.run(filepath)
     end
 
-    private
-
-    def _run_tasks(tasks)
-      Cascadence.runner.run_tasks tasks
-    end
-
-    def _absolutize_filepath(filepath)
-      return filepath if filepath =~ /^\//
-      return File.expand_path(filepath) if filepath =~ /^~/
-      return File.join(Dir.pwd, filepath)
-    end
-
-    def _get_files_from_filepath(filepath)
-      return [filepath] if _flow_file? filepath
-      return [] unless File.exists? filepath
-      Dir[File.join(filepath, "*")].map { |file_or_dir| _get_files_from_filepath file_or_dir }.flatten
-    end
-
-    def _flow_file?(filepath)
-      (filepath =~ /_flow\.rb$/) && File.file?(filepath)
-    end
-
-    def _setup_environment_from_filepath!(filepath)
-      require _find_flow_helper_from_filepath filepath
-    end
-
-    def _find_flow_helper_from_filepath( filepath )
-      _find_flow_helper_from_filepath File.expand_path("..", filepath) unless File.directory? filepath
-      throw :NoFlowHelperFound if filepath == "/"
-      Dir[File.join(filepath, "*")].select { |file| _flow_helper? file }.first || _find_flow_helper_from_filepath( File.expand_path("..", filepath) )
-    end
-
-    def _flow_helper?(filepath)
-      (filepath =~ /\/flow_helper\.rb$/) && File.file?(filepath)
-    end
-
-    def _get_task_from_file(file)
-      flow = _get_flow_from_file file
-      throw "Bad flow from #{file}. Available flows: #{Cascadence::Flow.subclasses.to_s}" if flow.nil?
-      Cascadence::Task.new(_get_zero_state_generator_from_flow flow) do |state=nil|
-        flow.new(state).run_states
-      end
-    end
-
-    def _get_zero_state_generator_from_flow(flow)
-      return flow.zero_state_generator if flow.respond_to? :zero_state_generator
-      return Cascadence.config.zero_state_generator if flow == Object || !flow.respond_to?(:parent)
-      _get_zero_state_generator_from_flow(flow.parent)
-    end
-
-    def _get_flow_from_file(file)
-      Cascadence::Flow.subclasses.select { |subclass| _reasonably_matched?(subclass.to_s, file.chomp(".rb")) }.first
-    end
-
-    def _reasonably_matched?(str1, str2)
-      !(str2.to_s.gsub(/^\/?/, "/") =~ Regexp.new("\/" + str1.to_s.split("::").map(&:underscore).join("/") + "$")).nil?
+    desc "generate [FLOWNAME]", "generates the flow project as specified by the name with respect to your current directory."
+    def generate(flowname)
+      Cascadence::Commander::Generate.start ["dosomeshit", flowname, Dir.pwd]
     end
 
   end
 end
+
+Dir[File.join(File.dirname(__FILE__), "commander", "*.rb")].each { |f| require f }

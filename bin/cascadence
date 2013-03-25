@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require File.expand_path("../../lib/cascadence", __FILE__)
-if ["help", "version", "flow"].include? ARGV.first 
+if ["help", "version", "flow", "generate"].include? ARGV.first 
   Cascadence::Commander.start ARGV
 else
   Cascadence::Commander.start ARGV.unshift("flow")

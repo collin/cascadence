@@ -1,0 +1,19 @@
+require "capybara"
+Dir[File.expand_path("../*.rb", __FILE__)].each { |f| require f }
+
+Cascadence.config do |config|
+  # Cascadence supports parallelism when running your flows.
+  # Each file that ends with _flow.rb will be treated as an
+  # individual flow that you want cascadence to run. It is
+  # highly recommended that you set max_thread_count to a 
+  # reasonably small number since running firefox instances
+  # tend to be fairly expensive
+  config.parallel = false
+  config.max_thread_count = 4
+
+  # The zero_state_generator creates the initial state used
+  # by your flows. Global configs here is just the default
+  # generator used in the event specific generators are not
+  # provided in the individual flows.
+  config.zero_state_generator = lambda { Capybara::Session.new :selenium }
+end

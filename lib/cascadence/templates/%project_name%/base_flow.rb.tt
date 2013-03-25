@@ -1,0 +1,8 @@
+module <%= project_name.camelcase %>
+  class BaseFlow < ::Cascadence::Flow
+
+    def initialize(state)
+      throw :NotImplementedError
+    end
+  end
+end

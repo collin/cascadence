@@ -1,0 +1,6 @@
+require File.join(File.dirname(__FILE__), "<%= project_name.underscore %>", "base_flow")
+module <%= project_name.camelcase %>
+  def self.zero_state_generator
+    throw :ImplementOrDeleteMe
+  end
+end
