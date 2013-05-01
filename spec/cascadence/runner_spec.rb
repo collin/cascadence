@@ -2,10 +2,17 @@ require 'spec_helper'
 
 describe Cascadence::Runner do
   let(:runner) { Cascadence::Runner.instance }
-  let(:task) { Class.new }
+  let(:task) do
+    Class.new do
+      def call
+        sleep 2
+        puts "thread exiting"
+        return 13
+      end
+    end
+  end
   before :each do
-    task.any_instance.should_receive(:call)
-    @tasks = 1.upto(5).map { |a| task.new }
+    @tasks = 1.upto(7).map { |a| task.new }
   end
   context "public api" do
     describe "#run_tasks" do
