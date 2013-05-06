@@ -11,11 +11,6 @@ module Cascadence
       Cascadence::Commander::Flow.instance.run(filepath)
     end
 
-    desc "generate [FLOWNAME]", "generates the flow project as specified by the name with respect to your current directory."
-    def generate(flowname)
-      Cascadence::Commander::Generate.start ["dosomeshit", flowname, Dir.pwd]
-    end
-
   end
 end
 

@@ -22,12 +22,12 @@ module Cascadence
 
     def _maybe_spin_up_thread(tasks, threads=nil)
       threads ||= []
-      if threads.count > Cascadence.config.max_thread_count
-        new_threads = threads
-      else
-        new_threads = _spin_up_task(tasks.pop, threads)
-      end
-      return [tasks, new_threads.select(&:alive?)]
+      threads = _spin_up_task(tasks.pop, threads) if _still_have_room_for_more_threads?(threads)
+      return [tasks, threads.select(&:alive?)]
+    end
+
+    def _still_have_room_for_more_threads?(threads)
+      threads.count < Cascadence.config.max_thread_count
     end
 
     def _spin_up_task(task, threads=nil)

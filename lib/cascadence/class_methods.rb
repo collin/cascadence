@@ -34,6 +34,16 @@ module Cascadence
       @merge_position << (index - 1)
     end
 
+    def flows_into( another_stream )
+      Cascadence::Confluence.merge_streams( self, another_stream ) do |estate|
+        if block_given?
+          yield estate
+        else
+          [estate]
+        end
+      end
+    end
+
   end
 
 end

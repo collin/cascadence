@@ -8,6 +8,7 @@ module Cascadence
   autoload :Flow, File.join( File.dirname(__FILE__), "cascadence", "flow" )
   autoload :Helper, File.join( File.dirname(__FILE__), "cascadence", "helper")
   autoload :Commander, File.join( File.dirname(__FILE__), "cascadence", "commander")
+  autoload :Confluence, File.join( File.dirname(__FILE__), "cascadence", "confluence")
   autoload :Runner, File.join( File.dirname(__FILE__), "cascadence", "runner")
   autoload :Config, File.join( File.dirname(__FILE__), "cascadence", "config")
   autoload :Task, File.join( File.dirname(__FILE__), "cascadence", "task")
