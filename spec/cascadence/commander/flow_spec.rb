@@ -128,7 +128,7 @@ describe Cascadence::Commander::Flow do
           @starting = File.expand_path __FILE__
         end
         it "should throw an symbol as it cannot find the flow helper" do
-          expect { path }.to throw_symbol :NoFlowHelperFound
+          expect { path }.to raise_error(NameError)
         end
       end
       context "dumb case" do
