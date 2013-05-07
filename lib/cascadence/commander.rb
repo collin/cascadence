@@ -26,11 +26,10 @@ module Cascadence
     def flow
       tasks = Cascadence::Commander::Flow.instance.run(options.path, options.times.to_i)
       if options.daemonize?
-        Daemons.daemonize
+        ::Daemons.daemonize
         Cascadence::Commander::Flow.instance.run_tasks(tasks)
       end
     end
-
   end
 end
 
