@@ -2,7 +2,6 @@ source "http://rubygems.org"
 
 gem "thor", ">= 0.18.1"
 gem "activesupport", ">= 3.0.0"
-gem "daemons", "~> 1.1.9"
 
 group :development do
   gem "jeweler", "~> 1.8.0"

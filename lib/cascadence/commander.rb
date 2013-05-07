@@ -12,22 +12,22 @@ module Cascadence
       Runs all the flow specified if <filepath> is a file. If <filepath> is a directory, 
       cascadence will run all the flows in that directory.
 
-      With the -d option, cascadence will loop back after it finishes with its given flows
+      With the -f option, cascadence will loop back after it finishes with its given flows
       and continue to run continously for all eternity (or until it dies)
 
       With the -p option, specify the path to the file or folder that holds yours
 
-      With the -t option, specify the number of times to run the flows. If -d is specify,
+      With the -t option, specify the number of times to run the flows. If -f is specify,
       this value is treated as infinity regardless of what you actually put
     LONGDESC
-    method_option :daemonize, :type => :boolean, :desc => "Runs all the flows continously", :default => false, :aliases => "-d"
+    method_option :forever, :type => :boolean, :desc => "Runs all the flows continously", :default => false, :aliases => "-f"
     method_option :path, :type => :string, :desc => "Specify the filepaths you wish to run", :default => Dir.pwd, :aliases => "-p"
     method_option :times, :type => :numeric, :desc => "Specify the number of times to run", :default => 1, :aliases => "-t"
     def flow
-      tasks = Cascadence::Commander::Flow.instance.run(options.path, options.times.to_i)
-      if options.daemonize?
-        ::Daemons.daemonize
-        Cascadence::Commander::Flow.instance.run_tasks(tasks)
+      if options.forever?
+        Cascadence::Commander::Flow.instance.run(options.path)
+      else
+        Cascadence::Commander::Flow.instance.run(options.path, options.times.to_i)
       end
     end
   end

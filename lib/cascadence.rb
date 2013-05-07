@@ -1,5 +1,4 @@
 require "thor"
-require "daemons"
 require "active_support/core_ext/string"
 require "active_support/core_ext/module"
 require "singleton"
