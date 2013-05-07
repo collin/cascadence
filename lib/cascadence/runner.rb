@@ -1,8 +1,8 @@
 module Cascadence
   class Runner
     include Singleton
-
     def run_tasks(tasks)
+      tasks = tasks.to_enum unless _implements_enumerable?(tasks)
       if Cascadence.config.parallel
         _run_parallel tasks
       else
@@ -12,8 +12,15 @@ module Cascadence
 
     private
 
+    def _implements_enumerable?(tasks)
+      return true if tasks.is_a? Enumerator
+      return true if tasks.is_a? Enumerator::Lazy
+      return true if [:next, :peek].inject(false) { |status, method| status || tasks.respond_to?(method) }
+      return false
+    end
+
     def _run_parallel(tasks, threads=[])
-      return if tasks.empty? && threads.empty?
+      return if tasks.peek.nil? && threads.empty?
       package = _maybe_spin_up_thread(tasks, threads)
       new_tasks = package.first
       new_threads = package.last
@@ -22,7 +29,7 @@ module Cascadence
 
     def _maybe_spin_up_thread(tasks, threads=nil)
       threads ||= []
-      threads = _spin_up_task(tasks.pop, threads) if _still_have_room_for_more_threads?(threads)
+      threads = _spin_up_task(tasks.next, threads) if _still_have_room_for_more_threads?(threads)
       return [tasks, threads.select(&:alive?)]
     end
 

@@ -3,15 +3,18 @@ module Cascadence
     class Flow
       include Singleton
 
-      def run(filepath)
+      def run(filepath, times=nil)
+        _run_tasks _setup_environment_and_get_tasks!(filepath).lazy.cycle(times)
+      end
+
+      private
+
+      def _setup_environment_and_get_tasks!(filepath)
         abs_file_path = _absolutize_filepath filepath
         files = _get_files_from_filepath abs_file_path
         _setup_environment_from_filepath!(_absolutize_filepath filepath)
         tasks = files.map { |file| _get_task_from_file file }
-        _run_tasks tasks
       end
-
-      private
 
       def _run_tasks(tasks)
         Cascadence.runner.run_tasks tasks
@@ -49,7 +52,9 @@ module Cascadence
 
       def _get_task_from_file(file)
         flow = _get_flow_from_file file
-        throw "Bad flow from #{file}. Available flows: #{Cascadence::Flow.subclasses.to_s}" if flow.nil?
+        raise NameError.new("Bad flow from #{file}. 
+          Remember, all flow class MUST end in Flow and MUST be referenced your flow_helper.rb file. 
+          Detected flows: #{Cascadence::Flow.subclasses.to_s}") if flow.nil?
         Cascadence::Task.new(_get_zero_state_generator_from_flow flow) do |state=nil|
           flow.new(state).run_states
         end
