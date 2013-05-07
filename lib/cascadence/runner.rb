@@ -20,7 +20,7 @@ module Cascadence
     end
 
     def _run_parallel(tasks, threads=[])
-      return if tasks.peek.nil? && threads.empty?
+      return tasks.rewind if tasks.peek.nil? && threads.empty?
       package = _maybe_spin_up_thread(tasks, threads)
       new_tasks = package.first
       new_threads = package.last
@@ -47,7 +47,7 @@ module Cascadence
     end
 
     def _run_sequential(tasks)
-      tasks.map(&:call).map(&:state)
+      tasks.map { |task| task.call; task }
     end
   end
 end

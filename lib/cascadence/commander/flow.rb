@@ -4,9 +4,12 @@ module Cascadence
       include Singleton
 
       def run(filepath, times=nil)
-        _run_tasks _setup_environment_and_get_tasks!(filepath).lazy.cycle(times)
+        run_tasks _setup_environment_and_get_tasks!(filepath).lazy.cycle(times)
       end
 
+      def run_tasks(tasks)
+        Cascadence.runner.run_tasks tasks
+      end
       private
 
       def _setup_environment_and_get_tasks!(filepath)
@@ -16,9 +19,6 @@ module Cascadence
         tasks = files.map { |file| _get_task_from_file file }
       end
 
-      def _run_tasks(tasks)
-        Cascadence.runner.run_tasks tasks
-      end
 
       def _absolutize_filepath(filepath)
         return filepath if filepath =~ /^\//
@@ -42,7 +42,7 @@ module Cascadence
 
       def _find_flow_helper_from_filepath( filepath )
         _find_flow_helper_from_filepath File.expand_path("..", filepath) unless File.directory? filepath
-        throw :NoFlowHelperFound if filepath == "/"
+        raise NameError.new("No flow_helper.rb file found. Be sure you have a flow_helper.rb file in your flows folder!") if filepath == "/"
         Dir[File.join(filepath, "*")].select { |file| _flow_helper? file }.first || _find_flow_helper_from_filepath( File.expand_path("..", filepath) )
       end
 

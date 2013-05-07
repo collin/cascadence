@@ -24,10 +24,10 @@ module Cascadence
     method_option :path, :type => :string, :desc => "Specify the filepaths you wish to run", :default => Dir.pwd, :aliases => "-p"
     method_option :times, :type => :numeric, :desc => "Specify the number of times to run", :default => 1, :aliases => "-t"
     def flow
+      tasks = Cascadence::Commander::Flow.instance.run(options.path, options.times.to_i)
       if options.daemonize?
-        Cascadence::Commander::Flow.instance.run(options.path)
-      else
-        Cascadence::Commander::Flow.instance.run(options.path, options.times.to_i)
+        Daemons.daemonize
+        Cascadence::Commander::Flow.instance.run_tasks(tasks)
       end
     end
 
