@@ -1,4 +1,3 @@
-
 module Cascadence
 
   module Stateful
@@ -72,6 +71,7 @@ module Cascadence
     end
 
     def _debug_helper
+      Cascadence.say "Current _debug_helper: #{@debug_counter}"
       @debug_counter ||= 0
       @debug_counter += 1
       throw "Recursion Limit Reached! cascadence_position: #{cascadence_position} --> #{next_step_name}" if 100 < @debug_counter

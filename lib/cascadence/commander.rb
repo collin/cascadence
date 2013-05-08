@@ -2,8 +2,9 @@ module Cascadence
   class Commander < Thor
     self.default_task(:flow)
 
-    desc "version", "Not implemented yet. That's right, the command that tells you what version of cascadence you're running has not been implemented yet."
+    desc "version", "Cascadence version."
     def version
+      say Cascadence::Commander::Version.instance.run
       Cascadence::Commander::Version.instance.run
     end
 
@@ -23,7 +24,10 @@ module Cascadence
     method_option :forever, :type => :boolean, :desc => "Runs all the flows continously", :default => false, :aliases => "-f"
     method_option :path, :type => :string, :desc => "Specify the filepaths you wish to run", :default => Dir.pwd, :aliases => "-p"
     method_option :times, :type => :numeric, :desc => "Specify the number of times to run", :default => 1, :aliases => "-t"
+    method_option :verbose, :type => :boolean, :desc => "Turn on verbose mode", :default => false, :aliases => "-v"
     def flow
+      Cascadence::Writer.instance.verbose_mode = options.verbose?
+      Cascadence.say "Starting up flow"
       if options.forever?
         Cascadence::Commander::Flow.instance.run(options.path)
       else

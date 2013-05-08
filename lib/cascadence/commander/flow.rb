@@ -4,15 +4,20 @@ module Cascadence
       include Singleton
 
       def run(filepath, times=nil)
-        run_tasks _setup_environment_and_get_tasks!(filepath).lazy.cycle(times)
+        Cascadence.say "Attempting to run #{times.nil? ? 'infinite' : times.to_s} times given filepath: #{filepath}"
+        tasks = _setup_environment_and_get_tasks!(filepath)
+        Cascadence.say "Retrieved all tasks"
+        _run_tasks tasks.lazy.cycle(times)
       end
 
-      def run_tasks(tasks)
+      private
+      def _run_tasks(tasks)
+        Cascadence.say "Attempting to run_tasks all your tasks"
         Cascadence.runner.run_tasks tasks
       end
-      private
 
       def _setup_environment_and_get_tasks!(filepath)
+        Cascadence.say "Attempting to _setup_environment_and_get_tasks! given filepath: #{filepath}"
         abs_file_path = _absolutize_filepath filepath
         files = _get_files_from_filepath abs_file_path
         _setup_environment_from_filepath!(_absolutize_filepath filepath)
@@ -21,12 +26,14 @@ module Cascadence
 
 
       def _absolutize_filepath(filepath)
+        Cascadence.say "Attempting to _absolutize_filepath given filepath: #{filepath}"
         return filepath if filepath =~ /^\//
         return File.expand_path(filepath) if filepath =~ /^~/
         return File.join(Dir.pwd, filepath)
       end
 
       def _get_files_from_filepath(filepath)
+        Cascadence.say "Attempting to _get_files_from_filepath given filepath: #{filepath}"
         return [filepath] if _flow_file? filepath
         return [] unless File.exists? filepath
         Dir[File.join(filepath, "*")].map { |file_or_dir| _get_files_from_filepath file_or_dir }.flatten
@@ -37,10 +44,12 @@ module Cascadence
       end
 
       def _setup_environment_from_filepath!(filepath)
+        Cascadence.say "Attemping to _setup_environment_from_filepath!: #{filepath}"
         require _find_flow_helper_from_filepath filepath
       end
 
       def _find_flow_helper_from_filepath( filepath )
+        Cascadence.say "Attemping to _setup_environment_from_filepath!: #{filepath}"
         _find_flow_helper_from_filepath File.expand_path("..", filepath) unless File.directory? filepath
         raise NameError.new("No flow_helper.rb file found. Be sure you have a flow_helper.rb file in your flows folder!") if filepath == "/"
         Dir[File.join(filepath, "*")].select { |file| _flow_helper? file }.first || _find_flow_helper_from_filepath( File.expand_path("..", filepath) )
@@ -51,22 +60,26 @@ module Cascadence
       end
 
       def _get_task_from_file(file)
+        Cascadence.say "Attemping to _get_task_from_file: #{file}"
         flow = _get_flow_from_file file
         raise NameError.new("Bad flow from #{file}. 
           Remember, all flow class MUST end in Flow and MUST be referenced your flow_helper.rb file. 
           Detected flows: #{Cascadence::Flow.subclasses.to_s}") if flow.nil?
         Cascadence::Task.new(_get_zero_state_generator_from_flow flow) do |state=nil|
+          Cascadence.say "Attempting run #{flow} with state: #{state}"
           flow.new(state).run_states
         end
       end
 
       def _get_zero_state_generator_from_flow(flow)
+        Cascadence.say "Attemping to _get_zero_state_generator_from_flow: #{flow}"
         return flow.zero_state_generator if flow.respond_to? :zero_state_generator
         return Cascadence.config.zero_state_generator if flow == Object || !flow.respond_to?(:parent)
         _get_zero_state_generator_from_flow(flow.parent)
       end
 
       def _get_flow_from_file(file)
+        Cascadence.say "Attemping to _get_flow_from_file: #{file}"
         Cascadence::Flow.subclasses.select { |subclass| _reasonably_matched?(subclass.to_s, file.chomp(".rb")) }.first
       end
 

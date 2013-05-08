@@ -9,17 +9,17 @@ describe Cascadence::Commander do
 
     context "flow -p" do
       it "should run the flow stated" do
-        @thorify.call @argv
+        expect {@thorify.call @argv}.to raise_error StopIteration
       end
     end
     context "flow -t 2 -p" do
       it "should run the flow twice" do
-        @thorify.call @argv
+        expect {@thorify.call @argv}.to raise_error StopIteration
       end
     end
-    context "flow -d -p" do
+    context "flow -f -p" do
       before :each do
-        @argv.unshift " -d "
+        @argv.unshift " -f "
       end
       it "should run the flow forever" do
         pending "Testing this involves solving Turing's Halting Problem, which I can't do. Sorry"

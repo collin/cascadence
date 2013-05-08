@@ -40,14 +40,15 @@ module Cascadence
     def _spin_up_task(task, threads=nil)
       sleep 0.5
       threads ||= []
-      puts "Spinning up thread no.#{threads.count} out of #{Cascadence.config.max_thread_count}"
       thread = Thread.new { task.call } unless task.nil?
       threads.push thread unless thread.nil?
       return threads
     end
 
     def _run_sequential(tasks)
-      tasks.map { |task| task.call; task }
+      while task = tasks.next
+        task.call
+      end
     end
   end
 end
