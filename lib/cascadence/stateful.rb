@@ -39,7 +39,11 @@ module Cascadence
       _debug_helper
 
       unless next_step_name.nil?
-        send next_step_name
+        begin
+          send next_step_name
+        rescue => e
+          _consider_rescuing(e)
+        end
         _increment_cascadence
       end
       self
@@ -56,6 +60,12 @@ module Cascadence
     end
 
     private
+
+    def _consider_rescuing(e)
+      raise e if self.class.cascadence_rescuers.nil?
+      raise e if self.class.cascadence_rescuers[e.class].nil?
+      send self.class.cascadence_rescuers[e.class]
+    end
 
     def _cascadence_end?
       return false if cascadence_position.nil?

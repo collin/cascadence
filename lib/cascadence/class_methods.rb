@@ -44,6 +44,16 @@ module Cascadence
       end
     end
 
+    def cascadence_rescuers
+      @cascadence_rescuers ||= {}
+    end
+
+    def rescue_from(error_class, with: "method_missing")
+      @cascadence_rescuers ||= {}
+      @cascadence_rescuers[error_class] = with
+      raise NoMethodError.new("Okay you tool, you can't rescue with nothing") if "method_missing" == with
+    end
+
   end
 
 end
