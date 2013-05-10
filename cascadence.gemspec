@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "cascadence"
-  s.version = "0.4.3"
+  s.version = "0.4.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Thomas Chen"]
-  s.date = "2013-05-08"
+  s.date = "2013-05-10"
   s.description = "Organizational helper for writing serializations for use with threading. The biggest use case of this would be in selenium / capybara based integration testing as this allows you to run flows in parallel."
   s.email = "foxnewsnetwork@gmail.com"
   s.executables = ["cascadence"]
@@ -56,6 +56,7 @@ Gem::Specification.new do |s|
     "lib/cascadence/templates/%project_name%/base_flow.rb.tt",
     "lib/cascadence/templates/flow_helper.rb.tt",
     "lib/cascadence/writer.rb",
+    "spec/cascadence/advanced_class_methods_spec.rb",
     "spec/cascadence/advanced_fork_merge_spec.rb",
     "spec/cascadence/class_methods_spec.rb",
     "spec/cascadence/commander/flow_spec.rb",
