@@ -61,10 +61,17 @@ module Cascadence
 
     private
 
+    def _my_rescuers
+      @_my_rescuers ||= Helper.collect_superclasses(self.class).select do |klass|
+        klass.respond_to? :cascadence_rescuers
+      end.inject({}) do |rescuers, klass|
+        rescuers.merge klass.cascadence_rescuers
+      end
+    end
     def _consider_rescuing(e)
-      raise e if self.class.cascadence_rescuers.nil?
-      raise e if self.class.cascadence_rescuers[e.class].nil?
-      send self.class.cascadence_rescuers[e.class]
+      raise e if _my_rescuers.nil?
+      raise e if _my_rescuers[e.class].nil?
+      send _my_rescuers[e.class]
     end
 
     def _cascadence_end?

@@ -6,8 +6,6 @@ describe Cascadence::Runner do
     Class.new do
       def call
         sleep 2
-        make_sure_this_gets_called!
-        puts "thread exiting"
         return 13
       end
     end
@@ -15,7 +13,6 @@ describe Cascadence::Runner do
   
   context "running tasks" do
     before :each do
-      task.any_instance.should_receive(:make_sure_this_gets_called!)
       @tasks = 1.upto(7).map { |a| task.new }.to_enum
     end
     context "public api" do

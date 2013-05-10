@@ -3,6 +3,16 @@ require 'spec_helper'
 describe Cascadence::Helper do
   let(:api) { Cascadence::Helper }
 
+  describe "::collect_superclasses" do
+    let(:flow) { Class.new(Cascadence::Flow) }
+    before :each do
+      @expected = [BasicObject, Object, Cascadence::Flow, flow]
+    end
+    it "should give me all the superclasses in an array with the most basic being first" do
+      api.collect_superclasses(flow).should eq @expected
+    end
+  end
+
   describe "#generate_tributary" do
     context "standard usage" do
       before :each do

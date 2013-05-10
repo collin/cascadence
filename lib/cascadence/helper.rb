@@ -17,5 +17,10 @@ module Cascadence
       return result
     end
 
+    def self.collect_superclasses(base, classes=[])
+      return classes if base.nil?
+      collect_superclasses(base.superclass, classes.unshift(base))
+    end
+
   end
 end
