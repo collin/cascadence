@@ -71,7 +71,7 @@ module Cascadence
     def _consider_rescuing(e)
       raise e if _my_rescuers.nil?
       raise e if _my_rescuers[e.class].nil?
-      send _my_rescuers[e.class]
+      send _my_rescuers[e.class], e
     end
 
     def _cascadence_end?

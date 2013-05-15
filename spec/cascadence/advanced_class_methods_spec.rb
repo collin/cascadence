@@ -33,7 +33,7 @@ describe Cascadence::ClassMethods do
         end
 
         private
-        def _white_knight
+        def _white_knight(e)
           self.state += ". But then some white knight (say Ryan Gosling or Ryan Reynolds) comes along, "
           self.state += " saves her and they live happily ever after"
         end
@@ -68,7 +68,7 @@ describe Cascadence::ClassMethods do
           end
 
           private
-          def _white_knight
+          def _white_knight(e)
             self.state += ". But then some white knight (say Ryan Gosling or Ryan Reynolds) comes along, "
             self.state += "and she too happily abandons her responsibilities and runs off with this guy."
             self.state += "The queen is bitterly disappointed, decides to turn the country into a democracy."

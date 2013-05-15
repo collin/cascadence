@@ -9,12 +9,12 @@ describe Cascadence::Commander do
 
     context "flow -p" do
       it "should run the flow stated" do
-        expect {@thorify.call @argv}.to raise_error StopIteration
+        @thorify.call @argv
       end
     end
     context "flow -t 2 -p" do
       it "should run the flow twice" do
-        expect {@thorify.call @argv}.to raise_error StopIteration
+        @thorify.call @argv
       end
     end
     context "flow -f -p" do

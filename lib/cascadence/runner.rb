@@ -46,8 +46,12 @@ module Cascadence
     end
 
     def _run_sequential(tasks)
-      while task = tasks.next
-        task.call
+      begin
+        while task = tasks.next
+          task.call
+        end
+      rescue StopIteration => e
+        puts "Done with all your tasks, master"
       end
     end
   end
